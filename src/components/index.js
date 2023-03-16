@@ -1,0 +1,6 @@
+export { default as DetalleProducto } from './DetalleProducto'
+export { default as Footer } from './Footer'
+export { default as Header } from './Header'
+export { default as Producto } from './Producto'
+export { default as ProductosProveedor } from './ProductosProveedor'
+export { default as ScrollToTop } from './ScrollToTop'
