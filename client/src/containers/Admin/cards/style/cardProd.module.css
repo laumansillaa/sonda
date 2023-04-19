@@ -1,0 +1,105 @@
+.contCard{
+    border: 1px solid #333333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: auto;
+}
+
+.contImg{
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;    
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.imgCard{
+    border-radius: 0px 8px 8px 0px;
+    object-fit: cover;
+}
+
+.contInfo {
+    width: -webkit-fill-available;
+    padding: 8px;
+}
+
+.contTitle{
+    border-bottom: 1px solid grey;
+    height: 40px;
+}
+
+.titleCard{
+    font-weight: 600;
+    font-size: 22px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.contDescripcion{
+    height: 150px;
+    border-bottom: 1px solid grey;
+    overflow: hidden;
+    /* white-space: normal; */
+    text-overflow: ellipsis;
+}
+
+.descripcionCard{
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.contProv{
+    display: flex;
+    gap: 16px;
+    height: auto;
+    min-height: 50px;
+}
+
+.prov {
+    font-weight: 500;
+}
+
+.contCatalogo{
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.contCatalogo:hover{
+    opacity: 0.5;
+}
+
+.contBtn{
+    display: flex;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 50px;
+}
+
+.btnCard, .btnCardEdit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btnCard{
+    background-color: rgb(218, 69, 69);
+    border-radius: 0px 0px 0px 8px; 
+}
+
+.btnCardEdit{
+    background-color: gray;
+    border-radius: 0px 0px 8px 0px; 
+}

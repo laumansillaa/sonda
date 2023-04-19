@@ -1,0 +1,95 @@
+.inputProd{
+    border: 1.5px solid #e0def7;
+    height: 42px;
+    width: 200px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000;
+    padding: 0px 8px;
+}
+
+.inputUrl{
+    border: 1.5px solid #e0def7;
+    height: 42px;
+    width: -webkit-fill-available;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000;
+    padding: 0px 8px;
+}
+
+.textareaProd{
+    border: 1.5px solid #e0def7;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000;
+    padding: 0px 8px;
+    resize: none;
+}
+
+.contForm{
+    display: flex;
+    gap: 12px;
+}
+
+.contOneProd, .contTwoProd{
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.contSelectImg{
+    border: 1.5px solid #e0def7;
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px;
+    font-weight: 500;
+    height: 80px;
+    cursor: pointer;
+}
+
+.inputFile{
+    display: none;
+}
+
+.contBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.btnConfirm{
+    border-radius: 8px;
+    height: 42px;
+    width: 200px;
+    background-color: #334155;
+    color: #ffffff;
+}
+
+.contTitle{
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.title{
+    position: absolute;
+    left: 80px;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: underline;
+    display: flex;
+    gap: 8px;
+}
+
+.contSubtitle{
+    margin: 16px 0px 8px 0px;
+}

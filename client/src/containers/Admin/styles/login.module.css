@@ -1,0 +1,26 @@
+.contLogin{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../assets/gasoducto.svg');
+    background-size: cover;
+}
+
+.contAux{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+}
+
+.contForm{
+    border: 1.5px solid #333333;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: rgb(73, 79, 92);
+}
