@@ -48,3 +48,8 @@
     font-weight: 500;
 }
 
+@media only screen and (max-width: 480px) {
+    #cont-select-prov, #select-prov.visible{
+        width: 100%;
+    }
+}

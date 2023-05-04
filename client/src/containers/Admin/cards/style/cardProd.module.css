@@ -12,13 +12,14 @@
     width: 180px;
     height: 180px;
     border-radius: 8px;    
-    /* border: 1px solid red; */
     display: flex;
     align-items: center;
 }
 
 .imgCard{
-    border-radius: 0px 8px 8px 0px;
+    width: 180px;
+    height: 160px;
+    border-radius: 8px;
     object-fit: cover;
 }
 

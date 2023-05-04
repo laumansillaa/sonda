@@ -5,8 +5,7 @@ export const CardPost = ({ curso }) => {
   return (
     <div
       className="w-3/5 min-h-[350px] flex border border-solid border-black 
-        rounded-lg sm-max:flex-col sm-max:w-11/12 hover:shadow-3xl  "
-    >
+        rounded-lg sm-max:flex-col sm-max:w-11/12 hover:shadow-3xl"> 
       <div className="w-3/6 flex flex-col gap-2.5 sm-max:w-full">
         <div className="flex pl-3 pr-3 pb-0.5 flex-col rounded-l-lg border-2 border-b border-solid gap-2">
           <h1 className="font-bold text-2xl font-roboto pt-3">{curso.title}</h1>

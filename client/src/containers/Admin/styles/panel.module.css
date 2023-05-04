@@ -1,0 +1,12 @@
+.contItems{
+    display: flex;
+    gap: 64px;
+}
+
+@media only screen and (max-width: 780px) {
+    .contItems{
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+}

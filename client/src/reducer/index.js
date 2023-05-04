@@ -2,7 +2,8 @@ const initialState = {
     allProds:[],
     prod: [],
     detail: [],
-    curso: []
+    curso: [],
+    admin: []
 }
 
 function reducer (state= initialState, action) {
@@ -21,7 +22,6 @@ function reducer (state= initialState, action) {
         case "UPDATE_PROD":
             return {
                 ...state,
-
             }
         case "GET_CURSO":
             return {
@@ -43,7 +43,6 @@ function reducer (state= initialState, action) {
                 ...state,
             }
         case 'FILTER_PROD': 
-            // console.log('ACTION', action.payload)
             const prods = state.allProds
             if (action.payload === "todo") {
                 return {
@@ -52,11 +51,15 @@ function reducer (state= initialState, action) {
                 }
             } else {
                 const stateFilter = prods.filter((e) => e.prov === action.payload)
-                // console.log('State Filter', stateFilter)
                 return {
                     ...state,
                     prod: stateFilter
                 }
+            }
+        case 'GET_ADMIN' : 
+            return {
+                ...state,
+                admin: action.payload
             }
         default:
             return state

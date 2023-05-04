@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProdsId, updateProd } from "../../../../actions";
+import { getAdmin, getProdsId, updateProd } from "../../../../actions";
 import { Link, useParams } from "react-router-dom";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -12,6 +12,7 @@ import { SelectCategoria } from "../createProd/selectCategoria";
 import { SelectProv } from "../createProd/selectProv";
 import { Footer } from "../../../components";
 import Swal from "sweetalert2";
+const {VITE_CLOUDINARY_API_KEY, VITE_CLOUD_NAME} = import.meta.env
 
 export const UpdateProd = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,18 @@ export const UpdateProd = () => {
     prov: "",
     img: "",
   });
+
+  const [isAdmin, setIsAdmin] = useState(false)
+  console.log('is Admin', isAdmin)
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    dispatch(getAdmin(user)).then((response) => {
+      console.log('response', response)
+      if (response.status === 200 && response.data.length) {
+        setIsAdmin(true)
+      }
+    })
+  },[])
   // console.log('form', input)
   const completeForm = () => {
     if (item) {
@@ -68,10 +81,10 @@ export const UpdateProd = () => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "sondafiles");
-    data.append("api_key", "779976812987324");
+    data.append("api_key", VITE_CLOUDINARY_API_KEY);
     try {
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dczvbrmbv/upload",
+        `https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/upload`,
         {
           method: "POST",
           body: data,
@@ -126,7 +139,6 @@ export const UpdateProd = () => {
       input.img
     ) {
       dispatch(updateProd(input, params.id)).then((response) => {
-        // console.log("response", response);
         sweetAlertConfirm();
       });
     } else {
@@ -143,79 +155,82 @@ export const UpdateProd = () => {
               size={24}
               className="cursor-pointer text-cyan-900 "
             />
-            Volver al panel
           </Link>
           <h1 className="text-center text-6xl text-white text-transparent bg-clip-text bg-gradient-to-t from-cyan-900 to-cyan-300 font-semibold">
             Productos
           </h1>
         </div>
-        <div>
-          <div className={style.contSubtitle}>
-            <h1>
-              Recuerde completar todos los campos para actualizar el producto.
-            </h1>
-          </div>
-          <div className={style.contForm}>
-            <div className={style.contTwoProd}>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={input.nombre}
-                className={style.inputUrl}
-                onChange={(e) => handleChange(e)}
-              />
-              <textarea
-                placeholder="Descripcion..."
-                name="descripcion"
-                rows="6"
-                cols="50"
-                value={input.descripcion}
-                className={style.textareaProd}
-                onChange={(e) => handleChange(e)}
-              />
-              <input
-                type="text"
-                name="catalogo"
-                placeholder="URL al catálogo"
-                value={input.catalogo}
-                className={style.inputUrl}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className={style.contOneProd}>
-              <SelectCategoria setInput={setInput} input={input} />
-              <SelectProv setInput={setInput} input={input} />
-              <label htmlFor="select-img" className={style.contSelectImg}>
-                <h3 className={style.titleInput}>Seleccione una imágen</h3>
-                {!loading && !uploadSuccess && !uploadError && (
-                  <AiOutlineFileImage size={22} />
-                )}
-                {loading && <CircularProgress size={22} />}
-                {uploadSuccess ? (
-                  <CheckCircleIcon size={22} sx={{ color: "green" }} />
-                ) : null}
-                {uploadError ? (
-                  <ErrorIcon size={22} sx={{ color: "red" }} />
-                ) : null}
+        {
+          isAdmin ? (
+            <div className={style.contGral}>
+              <div className={style.contSubtitle}>
+                <h1>
+                  Recuerde completar todos los campos para actualizar el producto.
+                </h1>
+              </div>
+              <div className={style.contForm}>
+                <div className={style.contTwoProd}>
+                  <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Nombre"
+                    value={input.nombre}
+                    className={style.inputUrl}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <textarea
+                    placeholder="Descripcion..."
+                    name="descripcion"
+                    rows="6"
+                    cols="50"
+                    value={input.descripcion}
+                    className={style.textareaProd}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <input
+                    type="text"
+                    name="catalogo"
+                    placeholder="URL al catálogo"
+                    value={input.catalogo}
+                    className={style.inputUrl}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={style.contOneProd}>
+                  <SelectCategoria setInput={setInput} input={input} />
+                  <SelectProv setInput={setInput} input={input} />
+                  <label htmlFor="select-img" className={style.contSelectImg}>
+                    <h3 className={style.titleInput}>Seleccione una imágen</h3>
+                    {!loading && !uploadSuccess && !uploadError && (
+                      <AiOutlineFileImage size={22} />
+                    )}
+                    {loading && <CircularProgress size={22} />}
+                    {uploadSuccess ? (
+                      <CheckCircleIcon size={22} sx={{ color: "green" }} />
+                    ) : null}
+                    {uploadError ? (
+                      <ErrorIcon size={22} sx={{ color: "red" }} />
+                    ) : null}
 
-                <input
-                  type="file"
-                  name="img"
-                  accept=".jepg, .png, .jpg"
-                  id="select-img"
-                  className={style.inputFile}
-                  onChange={(e) => handleChangeImg(e)}
-                />
-              </label>
+                    <input
+                      type="file"
+                      name="img"
+                      accept=".jepg, .png, .jpg"
+                      id="select-img"
+                      className={style.inputFile}
+                      onChange={(e) => handleChangeImg(e)}
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className={style.contBtn}>
+                <button className={style.btnConfirm} onClick={handleSubmit}>
+                  Actualizar
+                </button>
+              </div>
             </div>
-          </div>
-          <div className={style.contBtn}>
-            <button className={style.btnConfirm} onClick={handleSubmit}>
-              Actualizar
-            </button>
-          </div>
-        </div>
+          ): <h1 style={{fontSize:'20px'}}>Pagina no disponible</h1>
+        }
       </main>
       <Footer />
     </>

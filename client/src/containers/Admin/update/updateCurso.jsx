@@ -9,7 +9,9 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Footer } from "../../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { createCurso, getCursoId, updateCurso } from "../../../../actions";
+import { createCurso, getAdmin, getCursoId, updateCurso } from "../../../../actions";
+const {VITE_CLOUDINARY_API_KEY, VITE_CLOUD_NAME} = import.meta.env
+
 export const UpdateCurso = () => {
   const dispatch = useDispatch()
   const params = useParams()
@@ -24,6 +26,18 @@ export const UpdateCurso = () => {
     horario: "",
     mainImage: "",
   });
+
+  const [isAdmin, setIsAdmin] = useState(false)
+  console.log('is Admin', isAdmin)
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    dispatch(getAdmin(user)).then((response) => {
+      console.log('response', response)
+      if (response.status === 200 && response.data.length) {
+        setIsAdmin(true)
+      }
+    })
+  },[])
 
   const completeForm = () => {
     if (item) {
@@ -63,10 +77,10 @@ export const UpdateCurso = () => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "sondafiles");
-    data.append("api_key", "779976812987324");
+    data.append("api_key", VITE_CLOUDINARY_API_KEY);
     try {
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dczvbrmbv/upload",
+        `https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/upload`,
         {
           method: "POST",
           body: data,
@@ -147,81 +161,84 @@ console.log('Input', input)
               size={24}
               className="cursor-pointer text-cyan-900 "
             />
-            Volver al panel
           </Link>
           <h1 className="text-center text-6xl text-white text-transparent bg-clip-text bg-gradient-to-t from-cyan-900 to-cyan-300 font-semibold">
             Cursos
           </h1>
         </div>
-        <div className={style.contGeneral}>
-          <div className={style.contSubtitle}>
-            <h1>Complete todos los campos para crear un nuevo item</h1>
-          </div>
-          <div className={style.contForm}>
-            <div className={style.contTwoProd}>
-              <input
-                type="text"
-                name="title"
-                placeholder="Nombre"
-                className={style.inputUrl}
-                value={input.title}
-                onChange={(e) => handleChange(e)}
-              />
-              <textarea
-                placeholder="Descripcion..."
-                name="descripcion"
-                rows="6"
-                cols="50"
-                value={input.descripcion}
-                className={style.textareaProd}
-                onChange={(e) => handleChange(e)}
-              />
-              <input
-                type="text"
-                name="fecha"
-                placeholder="Fecha"
-                className={style.inputUrl}
-                value={input.fecha}
-                onChange={(e) => handleChange(e)}
-              />
-              <input
-                type="text"
-                name="horario"
-                placeholder="Horario"
-                value={input.horario}
-                className={style.inputUrl}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className={style.contOneProd}>
-              <label htmlFor="update-curso-img" className={style.contSelectImg}>
-                <h3 className={style.titleInput}>Seleccione una imágen</h3>
-                {!loading && !uploadSuccess && !uploadError && (
-                  <AiOutlineFileImage size={22} />
-                )}
-                {loading && <CircularProgress size={22} />}
-                {uploadSuccess ? (
-                  <CheckCircleIcon size={22} sx={{ color: "green" }} />
-                ) : null}
-                {uploadError ? (
-                  <ErrorIcon size={22} sx={{ color: "red" }} />
-                ) : null}
+        {
+          isAdmin ? (
+            <div className={style.contGeneral}>
+              <div className={style.contSubtitle}>
+                <h1>Complete todos los campos para crear un nuevo item</h1>
+              </div>
+              <div className={style.contForm}>
+                <div className={style.contTwoProd}>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="Nombre"
+                    className={style.inputUrl}
+                    value={input.title}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <textarea
+                    placeholder="Descripcion..."
+                    name="descripcion"
+                    rows="6"
+                    cols="50"
+                    value={input.descripcion}
+                    className={style.textareaProd}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <input
+                    type="text"
+                    name="fecha"
+                    placeholder="Fecha"
+                    className={style.inputUrl}
+                    value={input.fecha}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <input
+                    type="text"
+                    name="horario"
+                    placeholder="Horario"
+                    value={input.horario}
+                    className={style.inputUrl}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className={style.contOneProd}>
+                  <label htmlFor="update-curso-img" className={style.contSelectImg}>
+                    <h3 className={style.titleInput}>Seleccione una imágen</h3>
+                    {!loading && !uploadSuccess && !uploadError && (
+                      <AiOutlineFileImage size={22} />
+                    )}
+                    {loading && <CircularProgress size={22} />}
+                    {uploadSuccess ? (
+                      <CheckCircleIcon size={22} sx={{ color: "green" }} />
+                    ) : null}
+                    {uploadError ? (
+                      <ErrorIcon size={22} sx={{ color: "red" }} />
+                    ) : null}
 
-                <input
-                  type="file"
-                  name="img"
-                  accept=".jepg, .png, .jpg"
-                  id="update-curso-img"
-                  className={style.inputFile}
-                  onChange={(e) => handleChangeImg(e)}
-                />
-              </label>
+                    <input
+                      type="file"
+                      name="img"
+                      accept=".jepg, .png, .jpg"
+                      id="update-curso-img"
+                      className={style.inputFile}
+                      onChange={(e) => handleChangeImg(e)}
+                    />
+                  </label>
+                </div>
+              </div>
+              <button className={style.btnConfirm} onClick={handleSubmit}>
+                Confirmar
+              </button>
             </div>
-          </div>
-          <button className={style.btnConfirm} onClick={handleSubmit}>
-            Confirmar
-          </button>
-        </div>
+          ) : <h1 style={{fontSize:'20px'}}>Pagina no disponible</h1>
+        }
       </main>
       <Footer />
     </>

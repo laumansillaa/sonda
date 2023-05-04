@@ -93,6 +93,21 @@ const Header = () => {
 							{section.name}
 						</NavLink>
 					))}
+					{
+							session && 
+							<>	
+							<NavLink 
+								to='/admin'
+								className="font-semibold transition-all ease-in-out hover:text-cyan-600 hover:border-b hover:border-blue-300 cursor-pointer">
+								Admin
+							</NavLink>
+								<div className="font-semibold transition-all ease-in-out hover:text-cyan-600 hover:border-b hover:border-blue-300 cursor-pointer"
+									onClick={() => handleLogOut()}
+								>
+									Cerrar Sesión
+								</div>
+							</>
+						}
 				</ul>
 			)}
 		</>

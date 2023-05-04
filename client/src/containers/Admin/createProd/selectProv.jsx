@@ -16,8 +16,8 @@ export const SelectProv = ({input, setInput}) => {
             {input.prov || "Seleccione un proveedor"}
             <div  >
                 <div className={isOpen ? 'visible' : ''} role='menu' id='select-prov'>
-                    <a {...itemProps[1]} id='item-prov' name='Fitok' onClick={(e) => handleSelect(e)} >Fitok</a>
-                    <a {...itemProps[2]} id='item-prov' name='Emerson' onClick={(e) => handleSelect(e)}>Emerson</a>
+                    <a {...itemProps[1]} id='item-prov' name='fitok' onClick={(e) => handleSelect(e)} >Fitok</a>
+                    <a {...itemProps[2]} id='item-prov' name='emerson' onClick={(e) => handleSelect(e)}>Emerson</a>
                 </div>
             </div>
         </div>

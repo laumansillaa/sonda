@@ -32,7 +32,7 @@ export const CardProd = ({ item }) => {
   return (
     <div className={style.contCard}>
       <div className={style.contImg}>
-        <img src={imagen} alt={"img-prod"} className={style.imgCard} />
+        <img src={item.img} alt={"img-prod"} className={style.imgCard} />
       </div>
       <div className={style.contInfo}>
         <div className={style.contTitle}>

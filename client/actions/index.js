@@ -11,6 +11,7 @@ export function getProds () {
 }
 
 export function getProdsId (payload) {
+    console.log('PRODSSS ID')
     return async function (dispatch) {
         var json = await axios.get(`http://localhost:3001/producto/productodetail?id=${payload}`)
         return dispatch ({
@@ -106,6 +107,20 @@ export function filterProd (payload) {
 export function login (payload) {
     return async function (dispatch) {
         var json = await axios.post(`http://localhost:3001/admin/login`, payload)
+        localStorage.setItem('user', JSON.stringify(json.data[0].email))
         return json
+    }
+}
+
+export function getAdmin (payload) {
+    return async function (dispatch) {
+        var json = await axios.get(`http://localhost:3001/admin/getAdmin?email=${payload}`)
+        return json
+    }
+}
+
+export function getProdById (payload) {
+    return async function (dispatch) {
+        var json = await axios.get(``)
     }
 }

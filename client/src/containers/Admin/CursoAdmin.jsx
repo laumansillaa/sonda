@@ -1,9 +1,9 @@
 import style from "./styles/panelCurso.module.css";
 import { GrAddCircle } from "react-icons/gr";
 import add from "./assets/add.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCursos, getProds } from "../../../actions";
+import { getAdmin, getCursos, getProds } from "../../../actions";
 import { CardProd } from "./cards/cardProd";
 import { Link } from "react-router-dom";
 import { Footer } from "../../components";
@@ -13,6 +13,17 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 export const PanelCurso = () => {
   const dispatch = useDispatch();
   const cursoState = useSelector((state) => state.curso);
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    dispatch(getAdmin(user)).then((response) => {
+      console.log('response', response)
+      if (response.status === 200 && response.data.length) {
+        setIsAdmin(true)
+      }
+    })
+  },[])
   console.log("State", cursoState);
   useEffect(() => {
     dispatch(getCursos());
@@ -32,24 +43,32 @@ export const PanelCurso = () => {
               Cursos
             </h1>
           </div>
-          <div className={style.contBtnAction}>
-            <Link
-              to="/admin/curso/create"
-              className="flex items-center justify-center gap-4 bg-gradient-to-r text-white from-cyan-500 to-cyan-900 border border-solid border-white w-32 h-11 
-                        rounded-md font-medium"
-            >
-              Agregar <GrAddCircle className="text-white" />
-            </Link>
-          </div>
+          {
+            isAdmin && (
+              <div className={style.contBtnAction}>
+                <Link
+                  to="/admin/curso/create"
+                  className="flex items-center justify-center gap-4 bg-gradient-to-r text-white from-cyan-500 to-cyan-900 border border-solid border-white w-32 h-11 
+                            rounded-md font-medium"
+                >
+                  Agregar <GrAddCircle className="text-white" />
+                </Link>
+              </div>
+            )
+          }
         </div>
-        <div className={style.contCards}>
-          {cursoState?.length >= 1
-            ? cursoState.map((curso, index) => {
-                return <CardCurso curso={curso} key={index} />;
-              })
-            : null}
-          {/* {state && <h1>Hola</h1>} */}
-        </div>
+        {
+          isAdmin ? (
+            <div className={style.contCards}>
+              {cursoState?.length >= 1
+                ? cursoState.map((curso, index) => {
+                    return <CardCurso curso={curso} key={index} />;
+                  })
+                : null}
+              {/* {state && <h1>Hola</h1>} */}
+            </div>
+          ) : <h1 style={{fontSize:'20px'}}>Pagina no disponible</h1>
+        }
       </main>
       <Footer />
     </>

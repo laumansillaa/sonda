@@ -93,3 +93,31 @@
 .contSubtitle{
     margin: 16px 0px 8px 0px;
 }
+
+@media only screen and (max-width: 480px) {
+    .contForm, .contGral{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+    }
+
+    .contOneProd, .contSelectImg{
+        width: 100%;
+    }
+    
+    .inputUrl, .textareaProd{
+        width: 100%;
+    }
+
+    .title{
+        left: 20px;
+    }
+
+
+    .contSubtitle{
+        
+    }
+
+}

@@ -1,17 +1,20 @@
-import { useProductsContext } from '../context/ProductsContext';
+// import { useProductsContext } from '../context/ProductsContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import Producto from './Producto';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import { Paginado } from './Paginado';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProds } from '../../actions';
 
 const ProductosProveedor = () => {
 	const [productsToShow, setProductsToShow] = useState([]);
 	console.log('Product To Show', productsToShow)
-	const { products } = useProductsContext();
+	// const { products } = useProductsContext();
 	const { prov } = useParams();
-
+	const dispatch = useDispatch()
+	const stateProd = useSelector((state) => state.prod)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [productsPerPage, setProductsPerPage] = useState(8)
 	const indexOfLastProduct = currentPage * productsPerPage
@@ -23,8 +26,14 @@ const ProductosProveedor = () => {
 	}
 
 	useEffect(() => {
-		setProductsToShow(products.filter((product) => product.prov === prov));
-	}, [products]);
+		dispatch(getProds())
+	}, []);
+
+	useEffect(() => {
+		if (stateProd) {
+			setProductsToShow(stateProd.filter((product) => product.prov === prov));
+		}
+	}, [stateProd])
 
 	const navigate = useNavigate();
 
@@ -49,7 +58,7 @@ const ProductosProveedor = () => {
 							<Producto key={producto.id} {...producto} />
 						))
 					) : (
-						<h2 className="text-3xl text-black">En desarrollo...</h2>
+						<h2 className="text-3xl text-black">No se encontraron resultados</h2>
 					)}
 				</div>
 				<Paginado 

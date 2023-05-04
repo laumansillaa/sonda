@@ -1,11 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Footer } from "../components";
 import cursos from "../data/cursos";
 import { CardPost } from "./CardPost";
-
+import { useEffect } from "react";
+import { getCursos } from "../../actions";
+import style from './assets/listCurso.module.css'
 export const ListadoCursos = () => {
+
+  const dispatch = useDispatch()
+  const stateCurso = useSelector((state) => state.curso)
+  console.log('state curso', stateCurso)
+  useEffect(() => {
+    dispatch(getCursos())
+  },[])
+
+
   return (
     <>
-      <div className="w-full flex flex-col items-center pb-16 bg-gray-300">
+      <div className={style.contGeneral}>
         <div className="pt-24  text-center text-6xl text-white py-10 text-transparent bg-clip-text bg-gradient-to-t from-cyan-900 to-cyan-300 font-semibold">
           <h1>Cursos disponibles</h1>
         </div>
@@ -23,10 +35,13 @@ export const ListadoCursos = () => {
             No te piedas nuestras capacitaciones. Proyecta aún mas tu carrera.
           </h3>
         </div>
-        <div className="flex flex-col items-center gap-8 mt-6">
-          {cursos.map((curso, index) => {
-            return <CardPost curso={curso} key={index} />;
-          })}
+        <div className={style.contCards}>
+          {stateCurso?.length ? stateCurso.map((curso, index) => {
+            return <CardPost curso={curso} key={index} /> 
+          })
+          :
+          <h1 className="font-semibold title-font text-2xl">No hay cursos disponibles en este momento</h1>
+        }
         </div>
       </div>
       <Footer />

@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
-  console.log("input", input);
+  // console.log("input", input);
   const handleChange = (e) => {
     setInput({
       ...input,
@@ -26,9 +26,10 @@ const AdminLogin = () => {
       dispatch(login(input)).then((response) => {
         console.log("Response", response);
         if (response.status === 200) {
-			localStorage.setItem('session', true)
-			navigate("/")
-		};
+          console.log('Login Exitoso')
+          localStorage.setItem("session", true);
+          navigate("/");
+        }
       });
     }
   };

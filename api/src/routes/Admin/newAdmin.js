@@ -12,7 +12,8 @@ module.exports = async function (req, res, next) {
 
             const newAdmin = await Admin.create({
                 email: emailLoweCase,
-                password: password
+                password: password,
+                isAdmin: true
             })
 
             res.status(200).json(newAdmin)
