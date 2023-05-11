@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export function getProds () {
     return async function (dispatch) {
-        var json = await axios.get(`http://localhost:3001/producto/getproducto`)
+        var json = await axios.get(`https://sondasrl.onrender.com/producto/getproducto`)
         return dispatch({
             type: 'GET_PROD',
             payload: json.data
@@ -13,7 +13,7 @@ export function getProds () {
 export function getProdsId (payload) {
     console.log('PRODSSS ID')
     return async function (dispatch) {
-        var json = await axios.get(`http://localhost:3001/producto/productodetail?id=${payload}`)
+        var json = await axios.get(`https://sondasrl.onrender.com/producto/productodetail?id=${payload}`)
         return dispatch ({
             type: "GET_DETAIL",
             payload: json.data
@@ -23,14 +23,14 @@ export function getProdsId (payload) {
 
 export function deleteProds (payload) {
     return async function (dispatch) {
-        var json = await axios.delete(`http://localhost:3001/producto/deleteproducto?id=${payload}`)
+        var json = await axios.delete(`https://sondasrl.onrender.com/producto/deleteproducto?id=${payload}`)
         return json
     }
 }
 
 export function createProd (payload) {
     return async function (dispatch) {
-        var json = await axios.post(`http://localhost:3001/producto/createproducto`, payload)
+        var json = await axios.post(`https://sondasrl.onrender.com/producto/createproducto`, payload)
         return dispatch ({
             type: "CREATE_PROD",
             payload: json.data
@@ -40,7 +40,7 @@ export function createProd (payload) {
 
 export function updateProd (payload, id) {
     return async function (dispatch) {
-        var json = await axios.put(`http://localhost:3001/producto/updateproducto?id=${id}`, payload)
+        var json = await axios.put(`https://sondasrl.onrender.com/producto/updateproducto?id=${id}`, payload)
         return dispatch({
             type: "UPDATE_PROD",
             payload: json.data
@@ -50,7 +50,7 @@ export function updateProd (payload, id) {
 
 export function getCursos () {
     return async function (dispatch) {
-        var json = await axios.get(`http://localhost:3001/curso/getcurso`)
+        var json = await axios.get(`https://sondasrl.onrender.com/curso/getcurso`)
         return dispatch({
             type: 'GET_CURSO',
             payload: json.data
@@ -60,14 +60,14 @@ export function getCursos () {
 
 export function deleteCurso (payload) {
     return async function (dispatch) {
-        var json = await axios.delete(`http://localhost:3001/curso/deletecurso?id=${payload}`)
+        var json = await axios.delete(`https://sondasrl.onrender.com/curso/deletecurso?id=${payload}`)
         return json
     }
 }
 
 export function createCurso (payload) {
     return async function (dispatch) {
-        var json = await axios.post(`http://localhost:3001/curso/createcurso`, payload)
+        var json = await axios.post(`https://sondasrl.onrender.com/curso/createcurso`, payload)
         return dispatch({
             type: "CREATE_CURSO",
             payload: json.data
@@ -77,7 +77,7 @@ export function createCurso (payload) {
 
 export function getCursoId (payload) {
     return async function (dispatch) {
-        var json = await axios.get(`http://localhost:3001/curso/cursodetail?id=${payload}`)
+        var json = await axios.get(`https://sondasrl.onrender.com/curso/cursodetail?id=${payload}`)
         return dispatch ({
             type: 'GET_CURSO_DETAIL',
             payload: json.data
@@ -87,7 +87,7 @@ export function getCursoId (payload) {
 
 export function updateCurso (payload, id) {
     return async function (dispatch) {
-        var json = await axios.put(`http://localhost:3001/curso/updatecurso?id=${id}`, payload)
+        var json = await axios.put(`https://sondasrl.onrender.com/curso/updatecurso?id=${id}`, payload)
         return dispatch ({
             type: 'UPDATE_CURSO',
             payload: json.data
@@ -106,7 +106,7 @@ export function filterProd (payload) {
 
 export function login (payload) {
     return async function (dispatch) {
-        var json = await axios.post(`http://localhost:3001/admin/login`, payload)
+        var json = await axios.post(`https://sondasrl.onrender.com/admin/login`, payload)
         localStorage.setItem('user', JSON.stringify(json.data[0].email))
         return json
     }
@@ -114,7 +114,7 @@ export function login (payload) {
 
 export function getAdmin (payload) {
     return async function (dispatch) {
-        var json = await axios.get(`http://localhost:3001/admin/getAdmin?email=${payload}`)
+        var json = await axios.get(`https://sondasrl.onrender.com/admin/getAdmin?email=${payload}`)
         return json
     }
 }

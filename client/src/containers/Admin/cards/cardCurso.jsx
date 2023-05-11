@@ -1,12 +1,11 @@
 import style from "./style/cardCurso.module.css";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { deleteCurso, getCursos } from "../../../../actions";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
+import { deleteCurso, getCursos } from "../../../actions";
 
 export const CardCurso = ({ curso }) => {
-  // console.log("Card");
   const dispatch = useDispatch()
   const handleDeleteProd = () => {
     sweetAlertConfirm();

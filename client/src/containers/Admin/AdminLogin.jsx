@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Footer } from "../../components";
 import style from "./styles/login.module.css";
 import { useDispatch } from "react-redux";
-import { login } from "../../../actions";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../actions";
 
 const AdminLogin = () => {
   const dispatch = useDispatch();

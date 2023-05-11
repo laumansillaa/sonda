@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import style from "./styles/panel.module.css";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import bookImg from './assets/book.svg'
@@ -6,7 +6,7 @@ import boxImg from './assets/box.svg'
 import { Footer } from "../../components";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAdmin } from "../../../actions";
+import { getAdmin } from "../../actions";
 
 export const PanelAdmin = () => {
 

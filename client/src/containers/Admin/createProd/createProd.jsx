@@ -8,12 +8,11 @@ import { CircularProgress } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useDispatch } from "react-redux";
-import { createProd, getAdmin } from "../../../../actions";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Footer } from "../../../components";
-const { VITE_CLOUDINARY_API_KEY, VITE_CLOUD_NAME } = import.meta.env;
+import { createProd, getAdmin } from "../../../actions";
 export const CreateProd = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -55,10 +54,10 @@ export const CreateProd = () => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "sondafiles");
-    data.append("api_key", VITE_CLOUDINARY_API_KEY);
+    data.append("api_key", "452756165489438");
     try {
       const res = await fetch(
-        `https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/upload`,
+        `https://api.cloudinary.com/v1_1/dllcyag8k/upload`,
         {
           method: "POST",
           body: data,

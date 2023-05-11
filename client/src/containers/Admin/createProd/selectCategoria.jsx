@@ -1,16 +1,9 @@
 import useDropdownMenu from "react-accessible-dropdown-menu-hook";
 import "./styles/selectCategoria.css";
-import { useState } from "react";
 
 export const SelectCategoria = ({ setInput, input }) => {
   const { buttonProps, itemProps, isOpen } = useDropdownMenu(2);
-  //Emerson
-  //"Cromatografos", "Analizadores de gases de proceso", "Computadores de caudal de gas natural",
-  //"Detectores de gases y de llama",
 
-  //Fitok
-  //"Valves", "Filter", "Fitting", "Fitting", "Tubing", "Others"
-  //   const [title, setTitle] = useState("");
   const handleSelect = (e) => {
     setInput({
       ...input,

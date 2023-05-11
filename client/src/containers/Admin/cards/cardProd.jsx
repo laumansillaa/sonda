@@ -3,8 +3,8 @@ import imagen from "../../../assets/emerson.png";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { deleteProds, getProds } from "../../../../actions";
 import { Link } from "react-router-dom";
+import { deleteProds, getProds } from "../../../actions";
 
 export const CardProd = ({ item }) => {
   const dispatch = useDispatch();

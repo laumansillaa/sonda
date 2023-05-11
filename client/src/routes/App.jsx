@@ -1,7 +1,4 @@
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   DetalleProducto,
   Header,
@@ -28,7 +25,6 @@ import { UpdateCurso } from "../containers/Admin/update/updateCurso";
 import AdminLogin from "../containers/Admin/AdminLogin";
 
 function App() {
-
   return (
     <ProductsContextProvider>
       <Header />
@@ -49,23 +45,12 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route exact path="/login" element={<AdminLogin />} />
         <Route exact path="/admin" element={<PanelAdmin />} />
-        
-          <>
-            <Route exact path="/admin/prods" element={<PanelProducto />} />
-            <Route exact path="/admin/prods/create" element={<CreateProd />} />
-            <Route
-              exact
-              path="/admin/prods/update/:id"
-              element={<UpdateProd />}
-            />
-            <Route exact path="/admin/curso" element={<PanelCurso />} />
-            <Route exact path="/admin/curso/create" element={<CreateCurso />} />
-            <Route
-              exact
-              path="/admin/curso/update/:id"
-              element={<UpdateCurso />}
-            />
-          </>
+        <Route exact path="/admin/prods" element={<PanelProducto />} />
+        <Route exact path="/admin/prods/create" element={<CreateProd />} />
+        <Route exact path="/admin/prods/update/:id" element={<UpdateProd />} />
+        <Route exact path="/admin/curso" element={<PanelCurso />} />
+        <Route exact path="/admin/curso/create" element={<CreateCurso />} />
+        <Route exact path="/admin/curso/update/:id" element={<UpdateCurso />} />
       </Routes>
     </ProductsContextProvider>
   );

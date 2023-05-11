@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
-// import { useProductsContext } from '../context/ProductsContext';
 import Footer from './Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProdsId } from '../../actions';
+import { getProdsId } from '../actions';
 
 const DetalleProducto = () => {
 	const { itemId } = useParams();

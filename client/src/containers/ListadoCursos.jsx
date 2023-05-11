@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Footer } from "../components";
-import cursos from "../data/cursos";
 import { CardPost } from "./CardPost";
 import { useEffect } from "react";
-import { getCursos } from "../../actions";
 import style from './assets/listCurso.module.css'
+import { getCursos } from "../actions";
 export const ListadoCursos = () => {
 
   const dispatch = useDispatch()

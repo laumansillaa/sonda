@@ -1,9 +1,8 @@
 import style from "./styles/panelProd.module.css";
 import { GrAddCircle } from "react-icons/gr";
-import add from "./assets/add.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterProd, getAdmin, getProds } from "../../../actions";
+import { filterProd, getAdmin, getProds } from "../../actions";
 import { CardProd } from "./cards/cardProd";
 import { Link } from "react-router-dom";
 import { Footer } from "../../components";

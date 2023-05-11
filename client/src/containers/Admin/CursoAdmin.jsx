@@ -1,10 +1,8 @@
 import style from "./styles/panelCurso.module.css";
 import { GrAddCircle } from "react-icons/gr";
-import add from "./assets/add.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAdmin, getCursos, getProds } from "../../../actions";
-import { CardProd } from "./cards/cardProd";
+import { getAdmin, getCursos } from "../../actions";
 import { Link } from "react-router-dom";
 import { Footer } from "../../components";
 import { CardCurso } from "./cards/cardCurso";

@@ -9,10 +9,17 @@ const initialState = {
 function reducer (state= initialState, action) {
     switch (action.type) {
         case "GET_PROD":
+            const stateProd = action.payload
+            const newStateProd = stateProd.sort(function (a,b) {
+                if (a.createdAt > b.createdAt) {
+                    return -1;
+                  }
+                  return 0;
+            })
             return {
                 ...state,
-                allProds: action.payload,
-                prod: action.payload
+                allProds: newStateProd,
+                prod: newStateProd
             }
         case "GET_DETAIL":
             return {
@@ -24,9 +31,16 @@ function reducer (state= initialState, action) {
                 ...state,
             }
         case "GET_CURSO":
+            const stateCurso = action.payload
+            const newState = stateCurso.sort(function (a,b) {
+                if (a.createdAt > b.createdAt) {
+                    return -1;
+                  }
+                  return 0;
+            })
             return {
                 ...state,
-                curso: action.payload
+                curso: newState
             }
         case "CREATE_CURSO": 
             return {

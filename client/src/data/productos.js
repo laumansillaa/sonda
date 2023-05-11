@@ -1,9 +1,3 @@
-import logoFitok from '../assets/fitok/fitok.svg'
-import fitting from '../assets/fitok/fitting.svg'
-import tubbing from '../assets/fitok/tubbing.svg'
-import valves from '../assets/fitok/valves.svg'
-import filter from '../assets/fitok/filter.svg'
-
 export default [
 	{
 		nombre: 'Rosemount 370XA',

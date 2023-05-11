@@ -9,8 +9,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Footer } from "../../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { createCurso, getAdmin, getCursoId, updateCurso } from "../../../../actions";
-const {VITE_CLOUDINARY_API_KEY, VITE_CLOUD_NAME} = import.meta.env
+import { getAdmin, getCursoId, updateCurso } from "../../../actions";
 
 export const UpdateCurso = () => {
   const dispatch = useDispatch()
@@ -77,10 +76,10 @@ export const UpdateCurso = () => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "sondafiles");
-    data.append("api_key", VITE_CLOUDINARY_API_KEY);
+    data.append("api_key", "452756165489438");
     try {
       const res = await fetch(
-        `https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/upload`,
+        `https://api.cloudinary.com/v1_1/dllcyag8k/upload`,
         {
           method: "POST",
           body: data,

@@ -6,7 +6,7 @@ import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import { Paginado } from './Paginado';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProds } from '../../actions';
+import { getProds } from '../actions';
 
 const ProductosProveedor = () => {
 	const [productsToShow, setProductsToShow] = useState([]);
